@@ -14,14 +14,8 @@
     <div class="game-container">
       <h1 class="game-title">MINES</h1>
 
-      <!-- Блок выбора размера + иконка смены фона -->
+      <!-- Только кнопка смены фона -->
       <div class="field-selector">
-        <button data-size="3">3x3</button>
-        <button data-size="5" class="active">5x5</button>
-        <button data-size="7">7x7</button>
-        <button data-size="10">10x10</button>
-
-        <!-- Кнопка смены фона с эмоджи 🎨 -->
         <button id="changeBgBtn" class="bg-icon-button" title="Сменить фон">
           🎨
         </button>
@@ -30,8 +24,11 @@
       <!-- Игровое поле -->
       <div class="game-grid" id="gameGrid"></div>
 
-      <!-- Кнопка "ПОЛУЧИТЬ СИГНАЛ" -->
-      <button class="signal-button" id="getSignalBtn">ПОЛУЧИТЬ СИГНАЛ</button>
+      <!-- Кнопки управления -->
+      <div class="action-buttons">
+        <button class="signal-button" id="getSignalBtn">ПРОГНОЗ</button>
+        <button class="play-button">ИГРАТЬ</button>
+      </div>
     </div>
 
     <script src="script.js"></script>

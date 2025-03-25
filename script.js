@@ -1,5 +1,4 @@
 const grid = document.getElementById("gameGrid");
-const sizeButtons = document.querySelectorAll(".field-selector button");
 const signalBtn = document.getElementById("getSignalBtn");
 const bgBtn = document.getElementById("changeBgBtn");
 
@@ -28,6 +27,16 @@ bgBtn.addEventListener("click", () => {
   currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
   setBackground(currentBgIndex);
 });
+
+// Вероятности прогнозов от клиента
+function getRandomSignalsCount() {
+  const rand = Math.random() * 100;
+  if (rand < 53) return 3;
+  else if (rand < 83) return 4;
+  else if (rand < 93) return 5;
+  else if (rand < 98) return 6;
+  else return 7;
+}
 
 // Генерация поля
 function generateGrid(size) {
@@ -65,26 +74,12 @@ function placeSignals(count) {
   });
 }
 
-// Слушатели кнопок размеров
-sizeButtons.forEach((button) => {
-  if (button.hasAttribute("data-size")) {
-    button.addEventListener("click", () => {
-      sizeButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
-      currentSize = parseInt(button.getAttribute("data-size"));
-      signalsCount = 0; // ❗ сброс сигнала при смене размера поля
-      generateGrid(currentSize);
-    });
-  }
-});
-
-// ПОЛУЧИТЬ СИГНАЛ
+// Получить сигнал
 signalBtn.addEventListener("click", () => {
-  const maxSignals = Math.floor(currentSize);
-  signalsCount = Math.floor(Math.random() * maxSignals) + 1;
+  signalsCount = getRandomSignalsCount();
   placeSignals(signalsCount);
 });
 
-// Первичный запуск
+// Первый запуск
 generateGrid(currentSize);
 setBackground(currentBgIndex);
